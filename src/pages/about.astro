@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { team } from "../data/team.js";
+---
+
+<Layout
+  title="About"
+  description="MERIDIAN's story, vision, and the team behind every waterfront residence in Miami."
+>
+  <section class="mx-auto max-w-[1600px] px-6 pb-16 pt-40 md:px-10 md:pb-24 md:pt-52" data-reveal-group>
+    <p data-reveal class="text-sm uppercase tracking-[0.2em] text-brass">About</p>
+    <h1
+      data-reveal
+      class="mt-4 max-w-3xl font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] text-ink"
+    >
+      A quiet standard, held consistently.
+    </h1>
+    <!-- PLACEHOLDER: replace with real company story -->
+    <p data-reveal class="mt-6 max-w-[60ch] text-base leading-relaxed text-stone md:text-lg">
+      MERIDIAN was founded on a simple frustration: too much of Miami's
+      new residential development looks and feels the same, regardless
+      of price point. We build fewer residences than most developers our
+      size, and we design each one independently -- in dialogue with its
+      site, its light, and the people who will actually live there.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-[1600px] px-6 pb-24 md:px-10 md:pb-32" data-reveal-group>
+    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+      <div data-reveal class="md:col-span-5 overflow-hidden" style="aspect-ratio: 4/5;">
+        <!-- PLACEHOLDER: temporary stock photo -- swap for a real MERIDIAN studio/building photo -->
+        <img
+          data-parallax
+          src="/images/about/about-vision.avif"
+          alt="Modern residential tower with landscaped balconies overlooking Biscayne Bay"
+          class="h-full w-full object-cover will-change-transform"
+          loading="lazy"
+        />
+      </div>
+      <div class="md:col-span-6 md:col-start-7 md:self-center">
+        <h2 data-reveal class="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.1] text-ink">
+          Our Vision
+        </h2>
+        <!-- PLACEHOLDER: replace with real vision/mission copy -->
+        <p data-reveal class="mt-6 max-w-[48ch] text-base leading-relaxed text-stone">
+          We measure success by how a house holds up ten years after
+          closing, not by how quickly it sold. That means smaller
+          portfolios, longer design phases, and a willingness to say no
+          to a site that doesn't earn the effort.
+        </p>
+        <p data-reveal class="mt-4 max-w-[48ch] text-base leading-relaxed text-stone">
+          Every residence carries the same material language and the
+          same motion-and-whitespace restraint you see across this site
+          -- consistency by discipline, not by template.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-stone/15 bg-bone py-24 md:py-32" data-reveal-group>
+    <div class="mx-auto max-w-[1600px] px-6 md:px-10">
+      <h2 data-reveal class="mb-14 font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] text-ink md:mb-20">
+        Team
+      </h2>
+      <div class="grid gap-x-8 gap-y-14 md:grid-cols-4">
+        {
+          team.map((member) => (
+            <div data-reveal>
+              <div class="overflow-hidden" style="aspect-ratio: 4/5;">
+                <!-- PLACEHOLDER: temporary stock headshot -- swap for a real staff photo -->
+                <img
+                  src={member.image}
+                  alt={`${member.name}, ${member.title}`}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="mt-4 font-display text-lg text-ink">{member.name}</h3>
+              <p class="mt-1 text-sm uppercase tracking-wide text-stone">
+                {member.title}
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-stone">{member.bio}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-stone/15 bg-ink py-24 text-bone md:py-32" data-reveal-group>
+    <div class="mx-auto max-w-[1600px] px-6 text-center md:px-10">
+      <h2 data-reveal class="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1]">
+        Meet the team in person.
+      </h2>
+      <a
+        data-reveal
+        href="/contact#schedule"
+        class="mt-8 inline-block rounded-full border border-brass px-7 py-3 text-sm tracking-wide text-bone transition-colors duration-300 hover:bg-brass hover:text-ink"
+      >
+        Schedule Appointment
+      </a>
+    </div>
+  </section>
+</Layout>

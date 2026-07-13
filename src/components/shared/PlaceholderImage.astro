@@ -1,0 +1,31 @@
+---
+// Fallback placeholder per CLAUDE.md §5.3: no image-generation tool was
+// available in this session, so every visual slot uses a labeled
+// gradient block in the approved palette rather than stock photography
+// or a broken image. Swap for real photography by replacing this
+// component's usage with an <Image>/<img> once assets exist.
+interface Props {
+  label: string;
+  ratio?: string;
+  class?: string;
+}
+const { label, ratio = "4/5", class: className = "" } = Astro.props;
+---
+
+<div
+  class={`relative isolate flex items-end overflow-hidden bg-gradient-to-br from-stone/25 via-bone to-brass/20 ${className}`}
+  style={`aspect-ratio: ${ratio};`}
+  role="img"
+  aria-label={label}
+>
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: radial-gradient(circle at 30% 20%, rgba(176,139,87,0.18), transparent 60%);"
+  >
+  </div>
+  <span
+    class="relative z-10 m-4 inline-block max-w-[80%] border border-ink/10 bg-bone/70 px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] text-ink/70 backdrop-blur-sm"
+  >
+    IMAGE: {label}
+  </span>
+</div>

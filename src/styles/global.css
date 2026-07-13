@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/inter";
+
+/*
+  MERIDIAN design tokens -- sourced from CLAUDE.md 4.1/4.2.
+  Tailwind v4 reads custom design tokens from this @theme block instead of
+  a tailwind.config.js file; utilities like bg-ink, text-brass, font-display
+  are generated automatically from the --color-* / --font-* variables below.
+  Do not introduce additional colors without updating CLAUDE.md 4.1 first.
+*/
+@theme {
+  --color-ink: #14140f;
+  --color-bone: #f6f2ea;
+  --color-stone: #8c8579;
+  --color-brass: #b08b57;
+  --color-overlay: rgb(10 10 8 / 0.5);
+
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    /* Force light-mode rendering for native form controls (select, etc.)
+       so their text/background always match the site's light palette,
+       regardless of the visitor's OS/browser dark-mode preference. */
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-bone font-body text-ink antialiased;
+  }
+
+  ::selection {
+    background-color: rgb(176 139 87 / 0.3);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 2px;
+  }
+}
+
+/* Off-canvas hamburger icon state */
+#nav-toggle .nav-toggle-bar {
+  transform-origin: center;
+}
+#nav-toggle.is-open .nav-toggle-bar:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+#nav-toggle.is-open .nav-toggle-bar:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* Per-item nav dropdown chevron state (About, Contact, etc.) */
+[data-dropdown-toggle].is-open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+/* FAQ accordion chevron state (Contact page) */
+[data-faq-toggle].is-open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

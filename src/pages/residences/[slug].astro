@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PlaceholderImage from "../../components/shared/PlaceholderImage.astro";
+import { residences, getResidenceBySlug } from "../../data/residences.js";
+
+export function getStaticPaths() {
+  return residences.map((r) => ({ params: { slug: r.slug } }));
+}
+
+const { slug } = Astro.params;
+const residence = getResidenceBySlug(slug);
+---
+
+<Layout
+  title={residence.name}
+  description={`${residence.name} -- ${residence.blurb}`}
+>
+  <section class="relative flex h-[70svh] min-h-[480px] w-full items-end overflow-hidden bg-ink" data-reveal-group>
+    <img
+      data-kenburns
+      src={residence.heroImage.src}
+      alt={residence.heroImage.alt}
+      class="absolute inset-0 h-full w-full object-cover will-change-transform"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-overlay"></div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-16 md:px-10 md:pb-20">
+      <p data-reveal class="text-sm uppercase tracking-[0.2em] text-brass">
+        {residence.neighborhood}
+      </p>
+      <h1
+        data-reveal
+        class="mt-4 max-w-3xl font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.05] text-bone"
+      >
+        {residence.name}
+      </h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1600px] px-6 py-24 md:px-10 md:py-32" data-reveal-group>
+    <div class="grid gap-12 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-7">
+        {
+          residence.description.map((para) => (
+            <p data-reveal class="mb-6 max-w-[65ch] text-base leading-relaxed text-stone md:text-lg">
+              {para}
+            </p>
+          ))
+        }
+      </div>
+      <div data-reveal class="md:col-span-4 md:col-start-9">
+        <div class="border border-stone/20 p-8">
+          <p class="text-sm uppercase tracking-[0.15em] text-stone">
+            {residence.status}
+          </p>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div class="flex justify-between border-b border-stone/15 pb-3">
+              <dt class="text-stone">Bedrooms</dt>
+              <dd class="text-ink">{residence.specs.beds}</dd>
+            </div>
+            <div class="flex justify-between border-b border-stone/15 pb-3">
+              <dt class="text-stone">Bathrooms</dt>
+              <dd class="text-ink">{residence.specs.baths}</dd>
+            </div>
+            <div class="flex justify-between border-b border-stone/15 pb-3">
+              <dt class="text-stone">Interior</dt>
+              <dd class="text-ink">{residence.specs.sqft} Sq Ft</dd>
+            </div>
+            <div class="flex justify-between pb-1">
+              <dt class="text-stone">Lot</dt>
+              <dd class="text-ink">{residence.specs.lot}</dd>
+            </div>
+          </dl>
+          <!-- PLACEHOLDER: floor plan asset -->
+          <div class="mt-6">
+            <PlaceholderImage label="Floor plan, level 1" ratio="4/3" />
+          </div>
+          <a
+            href="/contact#schedule"
+            class="mt-8 block rounded-full border border-ink px-6 py-3 text-center text-sm tracking-wide text-ink transition-colors duration-300 hover:bg-ink hover:text-bone"
+          >
+            Schedule a Private Tour
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-stone/15 bg-bone py-24 md:py-32" data-reveal-group>
+    <div class="mx-auto max-w-[1600px] px-6 md:px-10">
+      <h2 data-reveal class="mb-10 font-display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.1] text-ink md:mb-14">
+        Interior &amp; Grounds
+      </h2>
+      <div class="grid gap-6 md:grid-cols-2 md:gap-8">
+        {
+          residence.gallery.map((item) => (
+            <div data-reveal class="overflow-hidden">
+              <PlaceholderImage label={item.label} ratio={item.ratio} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-stone/15 bg-ink py-24 text-bone md:py-32" data-reveal-group>
+    <div class="mx-auto max-w-[1600px] px-6 text-center md:px-10">
+      <h2 data-reveal class="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1]">
+        See {residence.name} in person.
+      </h2>
+      <p data-reveal class="mx-auto mt-4 max-w-[50ch] text-base leading-relaxed text-bone/80">
+        Private tours are arranged individually, by appointment.
+      </p>
+      <a
+        data-reveal
+        href="/contact#schedule"
+        class="mt-8 inline-block rounded-full border border-brass px-7 py-3 text-sm tracking-wide text-bone transition-colors duration-300 hover:bg-brass hover:text-ink"
+      >
+        Schedule Appointment
+      </a>
+    </div>
+  </section>
+</Layout>

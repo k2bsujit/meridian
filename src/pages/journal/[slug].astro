@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { articles, getArticleBySlug } from "../../data/journal.js";
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { slug: a.slug } }));
+}
+
+const { slug } = Astro.params;
+const article = getArticleBySlug(slug);
+
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<Layout title={article.title} description={article.excerpt}>
+  <article>
+    <section class="mx-auto max-w-[900px] px-6 pb-12 pt-40 md:px-10 md:pb-16 md:pt-52" data-reveal-group>
+      <p data-reveal class="text-sm uppercase tracking-[0.2em] text-brass">
+        {article.category} &middot; {formatDate(article.date)}
+      </p>
+      <h1
+        data-reveal
+        class="mt-4 font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] text-ink"
+      >
+        {article.title}
+      </h1>
+    </section>
+
+    <section class="mx-auto max-w-[1600px] px-6 pb-16 md:px-10" data-reveal-group>
+      <div data-reveal class="overflow-hidden" style="aspect-ratio: 21/9;">
+        <img
+          data-parallax
+          src={article.image.src}
+          alt={article.image.alt}
+          class="h-full w-full object-cover will-change-transform"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-[720px] px-6 pb-24 md:px-10 md:pb-32" data-reveal-group>
+      {
+        article.body.map((para) => (
+          <p data-reveal class="mb-6 text-base leading-relaxed text-stone md:text-lg">
+            {para}
+          </p>
+        ))
+      }
+      <a
+        data-reveal
+        href="/journal"
+        class="group mt-4 inline-flex items-center gap-2 text-sm uppercase tracking-wide text-ink"
+      >
+        Back to Journal
+        <span class="h-px w-6 bg-ink transition-all duration-300 group-hover:w-10 group-hover:bg-brass" />
+      </a>
+    </section>
+  </article>
+</Layout>

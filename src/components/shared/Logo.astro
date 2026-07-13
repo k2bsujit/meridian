@@ -1,0 +1,20 @@
+---
+// PLACEHOLDER: "MERIDIAN" is a stand-in brand name — swap for the real
+// wordmark once available. Built as styled text (not a raster logo) per
+// CLAUDE.md §5.1 so it renders crisp at any size and is a one-line swap
+// for an <img>/inline SVG later.
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+}
+const { variant = "dark", class: className = "" } = Astro.props;
+const color = variant === "light" ? "text-bone" : "text-ink";
+---
+
+<a
+  href="/"
+  class={`inline-flex items-baseline font-display text-2xl leading-none tracking-tight md:text-3xl ${color} ${className}`}
+  aria-label="MERIDIAN — Home"
+>
+  MERIDIAN
+</a>

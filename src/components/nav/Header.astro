@@ -1,0 +1,292 @@
+---
+import Logo from "../shared/Logo.astro";
+
+// "Home" intentionally omitted -- the logo (linked to "/") is the home
+// affordance. Items with a `children` array render a small caret next to
+// the label that reveals a mini dropdown of related pages; the label
+// itself still links straight to that section's own page.
+const nav = [
+  {
+    label: "About",
+    href: "/about",
+    children: [
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Gallery", href: "/gallery" },
+    ],
+  },
+  { label: "Residences", href: "/residences" },
+  { label: "The Experience", href: "/experience" },
+  { label: "Neighborhood", href: "/neighborhood" },
+  { label: "Journal", href: "/journal" },
+  {
+    label: "Contact",
+    href: "/contact",
+    children: [{ label: "FAQs", href: "/faq" }],
+  },
+];
+
+const slug = (label) => label.toLowerCase().replace(/\s+/g, "-");
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-stone/15 bg-bone/80 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
+    <Logo />
+
+    <!-- Always-visible fixed nav bar (desktop/wide layouts) -->
+    <nav aria-label="Primary" class="hidden items-center gap-6 xl:flex">
+      {
+        nav.map((item) => (
+          item.children ? (
+            <div class="relative flex items-center">
+              <a
+                href={item.href}
+                class="text-sm tracking-wide text-ink transition-colors duration-300 hover:text-brass"
+              >
+                {item.label}
+              </a>
+              <button
+                type="button"
+                data-dropdown-toggle={slug(item.label)}
+                aria-expanded="false"
+                aria-haspopup="true"
+                aria-controls={`dropdown-${slug(item.label)}`}
+                aria-label={`Show ${item.label} submenu`}
+                class="ml-1 flex h-6 w-6 items-center justify-center text-ink transition-colors duration-300 hover:text-brass"
+              >
+                <svg
+                  width="9"
+                  height="9"
+                  viewBox="0 0 10 10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                  class="dropdown-chevron transition-transform duration-300"
+                >
+                  <path d="M1.5 3.5L5 7L8.5 3.5" />
+                </svg>
+              </button>
+
+              <div
+                id={`dropdown-${slug(item.label)}`}
+                data-dropdown-panel={slug(item.label)}
+                role="menu"
+                aria-label={item.label}
+                class={`absolute top-full ${item.label === "Contact" ? "right-0" : "left-0"} mt-4 hidden w-44 border border-stone/15 bg-bone py-2 shadow-[0_16px_40px_rgba(20,20,15,0.12)]`}
+              >
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    role="menuitem"
+                    class="block px-5 py-2.5 text-sm text-ink transition-colors duration-300 hover:bg-ink/5 hover:text-brass"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="text-sm tracking-wide text-ink transition-colors duration-300 hover:text-brass"
+            >
+              {item.label}
+            </a>
+          )
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3 md:gap-6">
+      <a
+        href="/contact#schedule"
+        class="rounded-full border border-ink px-3.5 py-2 text-xs tracking-wide text-ink transition-colors duration-300 hover:bg-ink hover:text-bone sm:px-5 sm:py-2.5 sm:text-sm"
+      >
+        Schedule Appointment
+      </a>
+
+      <!-- Menu toggle only for layouts too narrow for the fixed bar -->
+      <button
+        id="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="off-canvas-nav"
+        class="relative flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] xl:hidden"
+      >
+        <span class="sr-only">Open menu</span>
+        <span
+          class="nav-toggle-bar h-px w-6 bg-ink transition-transform duration-300"
+        ></span>
+        <span
+          class="nav-toggle-bar h-px w-6 bg-ink transition-transform duration-300"
+        ></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Off-canvas nav -- only reachable below the xl breakpoint, where the fixed bar has no room -->
+<div
+  id="off-canvas-nav"
+  class="fixed inset-0 z-40 hidden bg-ink text-bone xl:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site navigation"
+>
+  <div
+    class="mx-auto flex h-full max-w-[1600px] flex-col justify-between overflow-y-auto px-6 py-28 md:px-10"
+  >
+    <nav aria-label="Primary">
+      <ul class="space-y-3 md:space-y-4">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="font-display text-[clamp(2rem,8vw,4rem)] leading-[1.05] text-bone transition-colors duration-300 hover:text-brass"
+              >
+                {item.label}
+              </a>
+              {item.children && (
+                <ul class="mt-2 space-y-1.5 pl-1">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="text-sm uppercase tracking-[0.15em] text-stone transition-colors duration-300 hover:text-brass"
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a
+      href="/contact#schedule"
+      class="mt-12 inline-block w-fit rounded-full border border-brass px-6 py-3 text-sm tracking-wide text-bone transition-colors duration-300 hover:bg-brass hover:text-ink"
+    >
+      Schedule Appointment
+    </a>
+  </div>
+</div>
+
+<script>
+  // Off-canvas nav (narrow layouts only): open/close, focus trap,
+  // Escape to close, scroll lock. Vanilla JS (no framework island) per
+  // CLAUDE.md section 2.
+  const toggle = document.getElementById("nav-toggle");
+  const panel = document.getElementById("off-canvas-nav");
+
+  if (toggle && panel) {
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let lastFocused = null;
+
+    const onKeydown = (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const focusables = Array.from(
+        panel.querySelectorAll(focusableSelector)
+      ).filter((el) => el.offsetParent !== null);
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    function openMenu() {
+      lastFocused = document.activeElement;
+      panel.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.classList.add("is-open");
+      toggle.querySelector(".sr-only").textContent = "Close menu";
+      const first = panel.querySelector(focusableSelector);
+      if (first) first.focus();
+      document.addEventListener("keydown", onKeydown);
+    }
+
+    function closeMenu() {
+      panel.classList.add("hidden");
+      document.body.style.overflow = "";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.classList.remove("is-open");
+      toggle.querySelector(".sr-only").textContent = "Open menu";
+      document.removeEventListener("keydown", onKeydown);
+      (lastFocused || toggle).focus();
+    }
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    panel.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", closeMenu)
+    );
+  }
+
+  // Per-item dropdowns in the fixed bar (About, Contact, etc.): click to
+  // toggle, only one open at a time, close on outside click, Escape, or
+  // selecting a link.
+  const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
+
+  function closeDropdown(t) {
+    const key = t.getAttribute("data-dropdown-toggle");
+    const p = document.querySelector(`[data-dropdown-panel="${key}"]`);
+    if (!p) return;
+    p.classList.add("hidden");
+    t.setAttribute("aria-expanded", "false");
+    t.classList.remove("is-open");
+  }
+
+  function openDropdown(t) {
+    dropdownToggles.forEach((other) => closeDropdown(other));
+    const key = t.getAttribute("data-dropdown-toggle");
+    const p = document.querySelector(`[data-dropdown-panel="${key}"]`);
+    if (!p) return;
+    p.classList.remove("hidden");
+    t.setAttribute("aria-expanded", "true");
+    t.classList.add("is-open");
+  }
+
+  dropdownToggles.forEach((t) => {
+    t.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = t.getAttribute("aria-expanded") === "true";
+      isOpen ? closeDropdown(t) : openDropdown(t);
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    dropdownToggles.forEach((t) => {
+      const key = t.getAttribute("data-dropdown-toggle");
+      const p = document.querySelector(`[data-dropdown-panel="${key}"]`);
+      if (p && !p.contains(e.target) && !t.contains(e.target)) {
+        closeDropdown(t);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") dropdownToggles.forEach((t) => closeDropdown(t));
+  });
+</script>

@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { articles } from "../../data/journal.js";
+
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<Layout
+  title="Journal"
+  description="Notes on design, neighborhood life, and the thinking behind MERIDIAN residences."
+>
+  <section class="mx-auto max-w-[1600px] px-6 pb-16 pt-40 md:px-10 md:pb-24 md:pt-52" data-reveal-group>
+    <p data-reveal class="text-sm uppercase tracking-[0.2em] text-brass">Journal</p>
+    <h1
+      data-reveal
+      class="mt-4 max-w-3xl font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] text-ink"
+    >
+      Notes on design and place.
+    </h1>
+  </section>
+
+  <section class="mx-auto max-w-[1600px] px-6 pb-32 md:px-10 md:pb-40" data-reveal-group>
+    <div class="space-y-16 md:space-y-20">
+      {
+        articles.map((article) => (
+          <a
+            href={`/journal/${article.slug}`}
+            data-reveal
+            class="group grid gap-6 border-t border-stone/15 pt-10 md:grid-cols-12 md:gap-8"
+          >
+            <div class="overflow-hidden md:col-span-4" style="aspect-ratio: 4/3;">
+              <img
+                data-parallax
+                src={article.image.src}
+                alt={article.image.alt}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] will-change-transform"
+                loading="lazy"
+              />
+            </div>
+            <div class="md:col-span-7 md:col-start-6">
+              <p class="text-xs uppercase tracking-[0.15em] text-stone">
+                {article.category} &middot; {formatDate(article.date)}
+              </p>
+              <h2 class="mt-3 font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15] text-ink">
+                {article.title}
+              </h2>
+              <p class="mt-4 max-w-[55ch] text-base leading-relaxed text-stone">
+                {article.excerpt}
+              </p>
+              <span class="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-wide text-ink">
+                Read Article
+                <span class="h-px w-6 bg-ink transition-all duration-300 group-hover:w-10 group-hover:bg-brass" />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
