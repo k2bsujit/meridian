@@ -142,4 +142,4 @@ Editorial, confident, understated. Avoid real-estate marketing clichés ("won't 
 - Responsive across mobile / tablet / desktop breakpoints — check the off-canvas nav, hero sections, and any multi-column layouts specifically.
 - Lighthouse pass (Performance, Accessibility, Best Practices ≥ 90).
 - All placeholder content/images clearly flagged for later replacement.
-- Motion respects `p
+- Motion respects `prefers-reduced-motion`.

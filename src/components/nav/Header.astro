@@ -37,7 +37,7 @@ const slug = (label) => label.toLowerCase().replace(/\s+/g, "-");
       {
         nav.map((item) => (
           item.children ? (
-            <div class="relative flex items-center">
+            <div class="relative flex items-center" data-dropdown-wrapper={slug(item.label)}>
               <a
                 href={item.href}
                 class="text-sm tracking-wide text-ink transition-colors duration-300 hover:text-brass"
@@ -111,15 +111,26 @@ const slug = (label) => label.toLowerCase().replace(/\s+/g, "-");
         type="button"
         aria-expanded="false"
         aria-controls="off-canvas-nav"
-        class="relative flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] xl:hidden"
+        class="relative flex h-11 w-11 shrink-0 items-center justify-center xl:hidden"
       >
         <span class="sr-only">Open menu</span>
-        <span
-          class="nav-toggle-bar h-px w-6 bg-ink transition-transform duration-300"
-        ></span>
-        <span
-          class="nav-toggle-bar h-px w-6 bg-ink transition-transform duration-300"
-        ></span>
+        <span class="nav-toggle-bars flex flex-col items-center justify-center gap-[5px]">
+          <span class="h-px w-6 bg-ink"></span>
+          <span class="h-px w-6 bg-ink"></span>
+        </span>
+        <svg
+          class="nav-toggle-close hidden"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M2 2L16 16M16 2L2 16" />
+        </svg>
       </button>
     </div>
   </div>
@@ -288,5 +299,52 @@ const slug = (label) => label.toLowerCase().replace(/\s+/g, "-");
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") dropdownToggles.forEach((t) => closeDropdown(t));
+  });
+
+  // Desktop hover: opening/closing the whole tab (label + chevron) on
+  // mouseenter/mouseleave, in addition to the click behavior above (which
+  // still covers keyboard/touch). A short close delay means moving the
+  // cursor from the tab down into the dropdown panel doesn't flicker-close
+  // it. Only active at the xl breakpoint, where the fixed bar is shown --
+  // matches the "hidden xl:flex" nav and avoids interfering with the
+  // off-canvas menu on narrower layouts.
+  let dropdownCloseTimer = null;
+  const desktopNavQuery = window.matchMedia("(min-width: 80rem)");
+
+  function cancelDropdownClose() {
+    if (dropdownCloseTimer) {
+      clearTimeout(dropdownCloseTimer);
+      dropdownCloseTimer = null;
+    }
+  }
+
+  function scheduleDropdownClose(t) {
+    cancelDropdownClose();
+    dropdownCloseTimer = setTimeout(() => closeDropdown(t), 150);
+  }
+
+  dropdownToggles.forEach((t) => {
+    const key = t.getAttribute("data-dropdown-toggle");
+    const wrapper = document.querySelector(`[data-dropdown-wrapper="${key}"]`);
+    const p = document.querySelector(`[data-dropdown-panel="${key}"]`);
+    if (!wrapper || !p) return;
+
+    wrapper.addEventListener("mouseenter", () => {
+      if (!desktopNavQuery.matches) return;
+      cancelDropdownClose();
+      openDropdown(t);
+    });
+    wrapper.addEventListener("mouseleave", () => {
+      if (!desktopNavQuery.matches) return;
+      scheduleDropdownClose(t);
+    });
+    p.addEventListener("mouseenter", () => {
+      if (!desktopNavQuery.matches) return;
+      cancelDropdownClose();
+    });
+    p.addEventListener("mouseleave", () => {
+      if (!desktopNavQuery.matches) return;
+      scheduleDropdownClose(t);
+    });
   });
 </script>

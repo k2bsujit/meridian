@@ -44,15 +44,18 @@
   }
 }
 
-/* Off-canvas hamburger icon state */
-#nav-toggle .nav-toggle-bar {
-  transform-origin: center;
+/* Off-canvas hamburger/close icon state -- swap between the two-bar
+   hamburger and a dedicated X icon rather than transform-morphing the
+   bars, so the close state is always a crisp, properly centered X. */
+#nav-toggle.is-open .nav-toggle-bars {
+  display: none;
 }
-#nav-toggle.is-open .nav-toggle-bar:first-child {
-  transform: translateY(3px) rotate(45deg);
+#nav-toggle .nav-toggle-close {
+  display: none;
 }
-#nav-toggle.is-open .nav-toggle-bar:last-child {
-  transform: translateY(-3px) rotate(-45deg);
+#nav-toggle.is-open .nav-toggle-close {
+  display: block;
+  color: var(--color-ink);
 }
 
 /* Per-item nav dropdown chevron state (About, Contact, etc.) */
