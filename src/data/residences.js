@@ -22,11 +22,15 @@ export const residences = [
       alt: "The Grove House exterior, modern concrete and glass architecture beneath a banyan canopy",
     },
     gallery: [
-      { type: "placeholder", label: "Courtyard reflecting pool, dusk", ratio: "4/3" },
-      { type: "placeholder", label: "Primary suite, oak and honed stone", ratio: "4/3" },
-      { type: "placeholder", label: "Kitchen, book-matched stone island", ratio: "4/3" },
-      { type: "placeholder", label: "Covered breezeway toward guest wing", ratio: "4/3" },
+      { type: "photo", src: "/images/grove-house/courtyard-pool.avif", alt: "The Grove House courtyard reflecting pool at dusk", ratio: "4/3" },
+      { type: "photo", src: "/images/grove-house/primary-suite.avif", alt: "The Grove House primary suite, oak and honed stone", ratio: "4/3" },
+      { type: "photo", src: "/images/grove-house/kitchen-stone-island.avif", alt: "The Grove House kitchen, book-matched stone island", ratio: "4/3" },
+      { type: "photo", src: "/images/grove-house/breezeway.avif", alt: "The Grove House covered breezeway toward the guest wing", ratio: "4/3" },
     ],
+    // PLACEHOLDER: generic floor plan shared across all residences pending
+    // client approval -- swap for a plan matching this property's actual
+    // layout and square footage once approved.
+    floorPlan: { src: "/images/grove-house/floor-plan.avif", alt: "The Grove House floor plan (illustrative, pending final plan)" },
   },
   {
     slug: "bay-harbor-residence",
@@ -46,11 +50,15 @@ export const residences = [
       alt: "Bay Harbor Residence exterior, single-story glass pavilion at the water's edge",
     },
     gallery: [
-      { type: "placeholder", label: "Terrace and private dock at sunset", ratio: "4/3" },
-      { type: "placeholder", label: "Living room, full-height glass wall", ratio: "4/3" },
-      { type: "placeholder", label: "Library and wine room, blackened steel", ratio: "4/3" },
-      { type: "placeholder", label: "Primary bedroom, water views", ratio: "4/3" },
+      { type: "photo", src: "/images/bay-harbor/terrace-dock.avif", alt: "Bay Harbor Residence terrace and private dock at sunset", ratio: "4/3" },
+      { type: "photo", src: "/images/bay-harbor/living-room.avif", alt: "Bay Harbor Residence living room, full-height glass wall", ratio: "4/3" },
+      { type: "photo", src: "/images/bay-harbor/library-wine-room.avif", alt: "Bay Harbor Residence library and wine room, blackened steel", ratio: "4/3" },
+      { type: "photo", src: "/images/bay-harbor/primary-bedroom.avif", alt: "Bay Harbor Residence primary bedroom with water views", ratio: "4/3" },
     ],
+    // PLACEHOLDER: generic floor plan shared across all residences pending
+    // client approval -- swap for a plan matching this property's actual
+    // layout and square footage once approved.
+    floorPlan: { src: "/images/bay-harbor/floor-plan.avif", alt: "Bay Harbor Residence floor plan (illustrative, pending final plan)" },
   },
   {
     slug: "sunset-harbour-row-no-4",
@@ -69,11 +77,15 @@ export const residences = [
       alt: "Sunset Harbour Row No. 4 exterior, modern townhome facing the marina",
     },
     gallery: [
-      { type: "placeholder", label: "Roof terrace, marina sunset view", ratio: "4/3" },
-      { type: "placeholder", label: "Ground floor garden and plunge pool", ratio: "4/3" },
-      { type: "placeholder", label: "Open stair connecting three levels", ratio: "4/3" },
-      { type: "placeholder", label: "Second bedroom, marina-facing", ratio: "4/3" },
+      { type: "photo", src: "/images/sunset-harbour/roof-terrace.avif", alt: "Sunset Harbour Row No. 4 roof terrace, marina sunset view", ratio: "4/3" },
+      { type: "photo", src: "/images/sunset-harbour/garden-plunge-pool.avif", alt: "Sunset Harbour Row No. 4 ground floor garden and plunge pool", ratio: "4/3" },
+      { type: "photo", src: "/images/sunset-harbour/open-stair.avif", alt: "Sunset Harbour Row No. 4 open stair connecting three levels", ratio: "4/3" },
+      { type: "photo", src: "/images/sunset-harbour/second-bedroom.avif", alt: "Sunset Harbour Row No. 4 second bedroom, marina-facing", ratio: "4/3" },
     ],
+    // PLACEHOLDER: generic floor plan shared across all residences pending
+    // client approval -- swap for a plan matching this property's actual
+    // layout and square footage once approved.
+    floorPlan: { src: "/images/sunset-harbour/floor-plan.avif", alt: "Sunset Harbour Row No. 4 floor plan (illustrative, pending final plan)" },
   },
   {
     slug: "the-belle-meade-house",
@@ -93,11 +105,15 @@ export const residences = [
       alt: "The Belle Meade House exterior at dusk, infinity pool and banyan tree overlooking the Miami skyline across Biscayne Bay",
     },
     gallery: [
-      { type: "placeholder", label: "Great room, full-height glass wall", ratio: "4/3" },
-      { type: "placeholder", label: "Primary suite, bay views", ratio: "4/3" },
-      { type: "placeholder", label: "Kitchen, book-matched stone island", ratio: "4/3" },
-      { type: "placeholder", label: "Pool deck at dusk", ratio: "4/3" },
+      { type: "photo", src: "/images/belle-meade/great-room.avif", alt: "The Belle Meade House great room, full-height glass wall", ratio: "4/3" },
+      { type: "photo", src: "/images/belle-meade/primary-suite.avif", alt: "The Belle Meade House primary suite with bay views", ratio: "4/3" },
+      { type: "photo", src: "/images/belle-meade/kitchen.avif", alt: "The Belle Meade House kitchen, book-matched stone island", ratio: "4/3" },
+      { type: "photo", src: "/images/belle-meade/pool-deck-dusk.avif", alt: "The Belle Meade House pool deck at dusk", ratio: "4/3" },
     ],
+    // PLACEHOLDER: generic floor plan shared across all residences pending
+    // client approval -- swap for a plan matching this property's actual
+    // layout and square footage once approved.
+    floorPlan: { src: "/images/belle-meade/floor-plan.avif", alt: "The Belle Meade House floor plan (illustrative, pending final plan)" },
   },
 ];
 

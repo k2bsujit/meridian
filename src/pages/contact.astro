@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { residences } from "../data/residences.js";
 ---
 
 <Layout
@@ -103,9 +104,11 @@ import Layout from "../layouts/Layout.astro";
                 class="w-full appearance-none border-b border-stone/40 bg-transparent py-2 pr-8 text-ink focus:border-brass focus:outline-none"
               >
                 <option value="">No preference</option>
-                <option value="the-grove-house">The Grove House</option>
-                <option value="bay-harbor-residence">Bay Harbor Residence</option>
-                <option value="sunset-harbour-row-no-4">Sunset Harbour Row No. 4</option>
+                {
+                  residences.map((r) => (
+                    <option value={r.slug}>{r.name}</option>
+                  ))
+                }
               </select>
               <svg
                 width="12"

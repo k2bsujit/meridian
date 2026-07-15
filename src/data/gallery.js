@@ -15,8 +15,8 @@ export const galleryGroups = [
   {
     label: "Interiors",
     items: [
-      { type: "placeholder", label: "Living room, full-height glass wall", ratio: "4/3" },
-      { type: "placeholder", label: "Kitchen, book-matched stone island", ratio: "4/5" },
+      { type: "photo", src: "/images/bay-harbor/living-room.avif", alt: "Bay Harbor Residence living room, full-height glass wall overlooking Biscayne Bay", ratio: "4/3" },
+      { type: "photo", src: "/images/belle-meade/kitchen.avif", alt: "The Belle Meade House kitchen, book-matched stone island", ratio: "4/5" },
       { type: "photo", src: "/images/experience/wellness-studio.avif", alt: "Sunlit wellness studio with yoga mats, plants, and warm wood floors", ratio: "4/3" },
       { type: "photo", src: "/images/experience-lounge.avif", alt: "Resident lounge interior, warm minimal materials", ratio: "4/5" },
     ],

@@ -1,6 +1,7 @@
 ---
 import Header from "../components/nav/Header.astro";
 import Footer from "../components/shared/Footer.astro";
+import MobileCTABar from "../components/shared/MobileCTABar.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -29,7 +30,7 @@ const {
     <meta property="og:type" content="website" />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body>
+  <body class="pb-[calc(3.5rem+env(safe-area-inset-bottom))] xl:pb-0">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-bone focus:px-4 focus:py-2 focus:text-ink"
@@ -41,6 +42,7 @@ const {
       <slot />
     </main>
     <Footer />
+    <MobileCTABar />
     <script src="../scripts/motion.js"></script>
   </body>
 </html>

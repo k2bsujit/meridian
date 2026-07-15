@@ -71,9 +71,14 @@ const residence = getResidenceBySlug(slug);
               <dd class="text-ink">{residence.specs.lot}</dd>
             </div>
           </dl>
-          <!-- PLACEHOLDER: floor plan asset -->
-          <div class="mt-6">
-            <PlaceholderImage label="Floor plan, level 1" ratio="4/3" />
+          <!-- PLACEHOLDER: illustrative floor plan shared across all residences for client approval; swap per-property once approved -->
+          <div class="mt-6 overflow-hidden border border-stone/20" style="aspect-ratio: 4/3;">
+            <img
+              src={residence.floorPlan.src}
+              alt={residence.floorPlan.alt}
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
           </div>
           <a
             href="/contact#schedule"
@@ -94,8 +99,18 @@ const residence = getResidenceBySlug(slug);
       <div class="grid gap-6 md:grid-cols-2 md:gap-8">
         {
           residence.gallery.map((item) => (
-            <div data-reveal class="overflow-hidden">
-              <PlaceholderImage label={item.label} ratio={item.ratio} />
+            <div data-reveal class="overflow-hidden" style={`aspect-ratio: ${item.ratio};`}>
+              {item.type === "photo" ? (
+                <img
+                  data-parallax
+                  src={item.src}
+                  alt={item.alt}
+                  class="h-full w-full object-cover will-change-transform"
+                  loading="lazy"
+                />
+              ) : (
+                <PlaceholderImage label={item.label} ratio={item.ratio} />
+              )}
             </div>
           ))
         }

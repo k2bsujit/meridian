@@ -64,4 +64,23 @@ export const groups = [
       },
     ],
   },
+  {
+    residence: "The Belle Meade House",
+    location: "Belle Meade, Miami",
+    slug: "the-belle-meade-house",
+    image: "/images/hero-exterior.avif",
+    alt: "The Belle Meade House exterior at dusk, infinity pool and banyan tree overlooking the Miami skyline across Biscayne Bay",
+    quotes: [
+      {
+        quote:
+          "We'd stopped believing a bay lot like this still existed in Miami. MERIDIAN found it and built around it instead of over it.",
+        name: "P. & E. Chastain",
+      },
+      {
+        quote:
+          "The banyan was the reason we said yes. Everyone else wanted to take it down; MERIDIAN built the house to keep it.",
+        name: "K. Halvorsen",
+      },
+    ],
+  },
 ];

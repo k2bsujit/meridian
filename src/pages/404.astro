@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist."
+>
+  <section class="mx-auto flex min-h-[70vh] max-w-[1600px] flex-col justify-center px-6 py-40 md:px-10" data-reveal-group>
+    <p data-reveal class="text-sm uppercase tracking-[0.2em] text-brass">404</p>
+    <h1
+      data-reveal
+      class="mt-4 max-w-3xl font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] text-ink"
+    >
+      This page has moved on.
+    </h1>
+    <p data-reveal class="mt-6 max-w-[60ch] text-base leading-relaxed text-stone md:text-lg">
+      The page you're looking for doesn't exist, or has been moved. Let's
+      get you back to somewhere worth seeing.
+    </p>
+    <a
+      data-reveal
+      href="/"
+      class="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-6 py-3 text-sm tracking-wide text-ink transition-colors duration-300 hover:bg-ink hover:text-bone"
+    >
+      Return Home
+    </a>
+  </section>
+</Layout>
