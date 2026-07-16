@@ -80,7 +80,7 @@ Quiet-luxury palette — restrained, warm neutrals with a single metallic accent
 Do not introduce additional colors without updating this table first.
 
 ### 4.2 Typography
-- **Display / headlines:** `Fraunces` (variable serif — use optical size + soft variants for large cinematic headlines)
+- **Display / headlines:** `Domine` (variable serif — sturdy, grounded serif with low contrast for large cinematic headlines)
 - **Body / UI:** `Inter`
 - Headline sizes should feel oversized relative to typical corporate sites — think editorial magazine, not SaaS landing page. Use `clamp()` for fluid type scaling instead of fixed breakpoint jumps.
 - Generous line-height on body copy (1.6–1.8), tight line-height on display type (1.0–1.1).
@@ -104,7 +104,7 @@ Do not introduce additional colors without updating this table first.
 
 No real photography or brand assets exist yet. Use this approach so everything is a clean swap-out later:
 
-1. **Logo:** Build a simple **typographic wordmark** in code (styled text using the Fraunces display font, not a generated raster logo). This is more reliable than AI-generated logo marks, renders crisp at every size, and is trivial to replace with a real logo file later — just swap the `<Logo />` component's markup for an `<img>`/inline SVG once a real logo exists. Do not spend generation budget on a raster logo icon.
+1. **Logo:** Build a simple **typographic wordmark** in code (styled text using the Playfair Display font, not a generated raster logo). This is more reliable than AI-generated logo marks, renders crisp at every size, and is trivial to replace with a real logo file later — just swap the `<Logo />` component's markup for an `<img>`/inline SVG once a real logo exists. Do not spend generation budget on a raster logo icon.
 2. **Photography:** Use AI image generation (whatever image tool is available in this environment) to produce placeholder hero/lifestyle imagery — architectural exteriors, interiors, lifestyle/amenity shots consistent with the palette in §4.1 (warm neutrals, golden-hour or soft daylight, minimal/modern architecture). Keep a consistent visual mood across all generated images so the site doesn't feel disjointed.
 3. **Fallback:** If no image generation tool is available in a given session, use solid-color/gradient placeholder blocks (using the palette tokens) with a clearly visible `IMAGE: [description of intended shot]` label, so nothing is ever left visually broken or filled with unrelated stock photography.
 4. Every image gets descriptive `alt` text — write it as if the real photo will match the description (helps whoever swaps in real photography later, and is required for accessibility regardless).

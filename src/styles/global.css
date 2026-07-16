@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/domine";
 @import "@fontsource-variable/inter";
 
 /*
@@ -16,7 +16,7 @@
   --color-brass: #b08b57;
   --color-overlay: rgb(10 10 8 / 0.5);
 
-  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-display: "Domine Variable", ui-serif, Georgia, serif;
   --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 }
 

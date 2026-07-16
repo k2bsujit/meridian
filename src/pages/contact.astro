@@ -30,18 +30,20 @@ import { residences } from "../data/residences.js";
 
         <!-- PLACEHOLDER: replace with real office contact info -->
         <div data-reveal class="mt-12">
-          <h3 class="text-sm uppercase tracking-[0.15em] text-stone">Sales Office</h3>
+          <h3 class="text-sm uppercase tracking-[0.15em] text-stone">Direct Contact</h3>
           <!-- TODO: real contact info -->
-          <address class="mt-3 text-sm leading-relaxed text-ink not-italic">
-            2 South Bayshore Drive, Suite 200<br />
-            Coconut Grove, Miami, FL 33133<br />
+          <p class="mt-3 text-sm leading-relaxed text-ink">
             <a href="tel:+13055550100" class="transition-colors duration-300 hover:text-brass"
               >+1 (305) 555-0100</a
             ><br />
             <a href="mailto:hello@meridian-example.com" class="transition-colors duration-300 hover:text-brass"
               >hello@meridian-example.com</a
             >
-          </address>
+          </p>
+          <a href="#visit" class="group mt-4 inline-flex items-center gap-2 text-sm uppercase tracking-wide text-stone transition-colors duration-300 hover:text-ink">
+            Visit the sales office
+            <span class="h-px w-4 bg-stone transition-all duration-300 group-hover:w-8 group-hover:bg-brass" />
+          </a>
         </div>
       </div>
 
@@ -142,6 +144,71 @@ import { residences } from "../data/residences.js";
             Submit Request
           </button>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="border-t border-stone/15 mx-auto max-w-[1600px] scroll-mt-28 px-6 py-24 md:px-10 md:py-32" data-reveal-group>
+    <div class="grid gap-12 md:grid-cols-12 md:gap-8">
+      <div class="md:col-span-4">
+        <p data-reveal class="text-sm uppercase tracking-[0.15em] text-brass">Visit</p>
+        <h2 data-reveal class="mt-4 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.1] text-ink">
+          See the sales office in person.
+        </h2>
+        <p data-reveal class="mt-6 max-w-[42ch] text-base leading-relaxed text-stone">
+          Tours are arranged by private appointment, but the sales office
+          welcomes walk-ins during open hours to view material samples and
+          the full collection.
+        </p>
+
+        <!-- PLACEHOLDER: replace with real office contact info -->
+        <div data-reveal class="mt-10 space-y-6 text-sm">
+          <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-stone">Address</p>
+            <!-- TODO: real contact info -->
+            <address class="mt-2 leading-relaxed text-ink not-italic">
+              2 South Bayshore Drive, Suite 200<br />
+              Coconut Grove, Miami, FL 33133
+            </address>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-stone">Hours</p>
+            <!-- PLACEHOLDER: replace with real office hours -->
+            <p class="mt-2 leading-relaxed text-ink">
+              Monday &ndash; Saturday, 10am &ndash; 6pm<br />
+              Sunday, by appointment
+            </p>
+          </div>
+        </div>
+
+        <a
+          data-reveal
+          href="https://www.google.com/maps?q=2+South+Bayshore+Drive,+Coconut+Grove,+Miami,+FL+33133"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-wide text-ink"
+        >
+          Get Directions
+          <span class="h-px w-6 bg-ink transition-all duration-300 group-hover:w-10 group-hover:bg-brass" />
+        </a>
+      </div>
+
+      <div data-reveal class="md:col-span-7 md:col-start-6">
+        <div class="relative overflow-hidden border border-stone/20" style="aspect-ratio: 4/3;">
+          <iframe
+            src="https://www.google.com/maps?q=2+South+Bayshore+Drive,+Coconut+Grove,+Miami,+FL+33133&output=embed"
+            title="Map showing the MERIDIAN sales office location in Coconut Grove, Miami, FL"
+            class="h-full w-full grayscale-[55%] sepia-[12%] contrast-[1.05] brightness-[0.97]"
+            style="border:0;"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <div class="pointer-events-none absolute inset-0 bg-ink/10"></div>
+          <div class="absolute bottom-4 left-4 border border-brass/40 bg-bone/95 px-4 py-3">
+            <p class="text-xs uppercase tracking-[0.15em] text-brass">Sales Office</p>
+            <p class="mt-1 text-sm text-ink">Coconut Grove, Miami</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
